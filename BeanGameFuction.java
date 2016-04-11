@@ -1,12 +1,17 @@
 //U10416030 陳子勤
 
-import java.awt.Color;
 import java.security.SecureRandom;
+import javafx.animation.PathTransition;
+import javafx.animation.PathTransition.OrientationType;
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.shape.*;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
 
 public class BeanGameFuction extends Application {
 	BeanGamePane beanGame = new BeanGamePane();
@@ -23,10 +28,43 @@ public class BeanGameFuction extends Application {
 	
 	public void createBall() {
 		Circle playBall = new Circle(210, 80, 4);
-		int red = 1+random.nextInt();
-		int blue = 1+random.nextInt();
-		int green = 1+random.nextInt();
-		Color playBallColor = new Color(red, blue, green);
+		
+		int red = 1+random.nextInt(255);
+		int blue = 1+random.nextInt(255);
+		int green = 1+random.nextInt(255);
+		Color playBallColor = Color.rgb(red, blue, green);
+		playBall.setFill(playBallColor);
+		
+		beanGame.getChildren().add(playBall);
+		
+		playBall(playBall, 210, 80);
+	}
+	
+	public void playBall(Node ball, int x, int y) {
+		int newX = x;
+		int newY = y;
+		Path path = new Path();
+		
+		path.getElements().add(new MoveTo(newX, newY));
+		for (int i = 0; i < 7; i++) {
+			newY = newY + 30;
+			int leftOrRight = random.nextInt(2);
+			if (leftOrRight == 1) {
+				newX = newX + 20;
+			}
+			if (leftOrRight == 2) {
+				newX = newX - 20;
+			}
+			path.getElements().add(new LineTo(newX, newY));
+		}
+		PathTransition p = new PathTransition();
+		p.setDuration(Duration.millis(3000));
+        p.setPath(path);
+        p.setNode(ball);
+        p.setOrientation(OrientationType.NONE);       
+        p.setCycleCount(1);
+        p.setAutoReverse(false);
+        p.play();
 	}
 }
 
