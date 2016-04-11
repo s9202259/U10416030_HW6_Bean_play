@@ -19,8 +19,10 @@ public class BeanGame extends Application{
 		Line buttonLine = new Line(60, 450, 360, 450);	//底線
 		buttonLine.setStrokeWidth(5);
 		
-		Line lineLeftSlanting = new Line(360, 20, 320, 80);	//左線及右線
-		Line lineRightSlanting = new Line(60, 80, 100, 20);	//左線及右線
+		Line lineLeftSlanting = new Line(360, 20, 225, 120);	//左線及右線
+		Line lineRightSlanting = new Line(60, 20, 195, 120);	//左線及右線
+		lineLeftSlanting.setStrokeWidth(5);
+		lineRightSlanting.setStrokeWidth(5);
 	
 		Line lineLeft = new Line(60, 450, 60, 20);	//左線及右線
 		Line lineRight = new Line(360, 450, 360, 20);
