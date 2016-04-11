@@ -1,12 +1,37 @@
 //U10416030 陳子勤
 
+import java.awt.Color;
+import java.security.SecureRandom;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.shape.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
-public class BeanGame extends Application{
+public class BeanGameFuction extends Application {
+	BeanGamePane beanGame = new BeanGamePane();
+	SecureRandom random = new SecureRandom();
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage stage) {
+		
+	}
+	
+	public void createBall() {
+		Circle playBall = new Circle(210, 80, 4);
+		int red = 1+random.nextInt();
+		int blue = 1+random.nextInt();
+		int green = 1+random.nextInt();
+		Color playBallColor = new Color(red, blue, green);
+	}
+}
+
+
+class BeanGamePane extends Application {
 	@Override
 	public void start(Stage primaryStage){
 		Pane pane = new Pane();
